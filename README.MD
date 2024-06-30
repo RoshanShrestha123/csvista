@@ -43,6 +43,3 @@ This will print the JSON output to the terminal.
 Command-line Options
 --p=/filepath: Specify the path to the CSV file that you want to convert to JSON.
 
-
-##### TODO
-- [ ] export the JSON to .json file 

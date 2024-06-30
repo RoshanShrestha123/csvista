@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 )
 
 func main() {
@@ -16,6 +17,8 @@ func main() {
 	flag.Parse()
 
 	ext := filepath.Ext(*filePath)
+	dir, fileName := filepath.Split(*filePath)
+	fileNameWithOutExt := strings.Split(fileName, ".")
 
 	if ext != ".csv" {
 		log.Fatal("File must of the .csv type!")
@@ -56,6 +59,11 @@ func main() {
 	}
 
 	data, err := json.Marshal(body)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = os.WriteFile(dir+fileNameWithOutExt[0]+".json", data, 0666)
 	if err != nil {
 		log.Fatal(err)
 	}
